@@ -124,6 +124,10 @@ public class Airline {
 
 
     public static void totalSeats(ArrayList<Plane> planes) {
+        if (planes.isEmpty()) {
+            System.out.println("в авиакомпанию еще не были добавлены самолеты");
+            return;
+        }
         int total_seats = 0;
         for (Plane pl : planes)
             total_seats += pl.getSeats();
@@ -133,6 +137,10 @@ public class Airline {
 
 
     public static void TotalLoadCapacity(ArrayList<Plane> planes) {
+        if (planes.isEmpty()) {
+            System.out.println("в авиакомпанию еще не были добавлены самолеты");
+            return;
+        }
         float total_load = 0f;
         for (Plane pl : planes) {
             total_load += pl.getLoad_capacity();

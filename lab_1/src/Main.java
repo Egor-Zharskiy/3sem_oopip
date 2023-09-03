@@ -33,10 +33,10 @@ public class Main {
                     Airline.FillAirline(planes, airline);
                     break;
                 case 3:
-                    Airline.totalSeats(planes);
+                    Airline.totalSeats(airline);
                     break;
                 case 4:
-                    Airline.TotalLoadCapacity(planes);
+                    Airline.TotalLoadCapacity(airline);
                     break;
                 case 5:
                     Airline.DeletePlane(airline);
