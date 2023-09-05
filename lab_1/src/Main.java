@@ -42,7 +42,8 @@ public class Main {
                     Airline.DeletePlane(airline);
                     break;
                 case 6:
-                    Menu.PrintList(planes);
+                    planes.forEach(name -> System.out.println((planes.indexOf(name) + 1) + " - " + name));
+//                    Menu.PrintList(planes);
                     break;
                 case 7:
                     Menu.PrintList(airline);
