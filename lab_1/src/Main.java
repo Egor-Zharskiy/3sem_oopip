@@ -10,14 +10,28 @@ public class Main {
 
         ArrayList<Plane> planes = new ArrayList<>();
         ArrayList<Plane> airline = new ArrayList<>();
-        planes.add(new Boeing("f", 1, 1));
+        planes.add(new Boeing("f", 100, 100));
         planes.add(new Convair("convair", 12, 2000));
         planes.add(new Airbus("airbus", 125, 4200));
+
+        Function func = (airline_planes) -> {
+            if (airline_planes.isEmpty()) {
+                System.out.println("в авиакомпанию еще не были добавлены самолеты");
+                return;
+            }
+            int total_seats = 0;
+            for (Plane pl : airline_planes)
+                total_seats += pl.getSeats();
+
+            System.out.println("Суммарная вместимость самолетов авиакомпании: " + total_seats + " мест");
+
+        };
+
 
         int x;
         boolean flag = true;
 
-        do {
+        while(flag) {
             Menu.PrintMenu();
             try {
                 x = Integer.parseInt(scan.nextLine());
@@ -33,7 +47,8 @@ public class Main {
                     Airline.FillAirline(planes, airline);
                     break;
                 case 3:
-                    Airline.totalSeats(airline);
+                    func.calc(airline);
+//                    Airline.totalSeats(airline);
                     break;
                 case 4:
                     Airline.TotalLoadCapacity(airline);
@@ -54,7 +69,7 @@ public class Main {
                 default:
                     System.out.println("Неверный выбор");
             }
-        } while (flag);
+        }
 
     }
 }
