@@ -1,6 +1,8 @@
 package planes;
 
-public class Plane {
+import java.io.Serializable;
+
+public class Plane implements Serializable {
     protected String name;
 
     protected int seats;
