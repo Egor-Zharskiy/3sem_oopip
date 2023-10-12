@@ -25,7 +25,7 @@ public class FileIO {
             oos.writeObject(planes);
             oos.writeObject(airline);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("IO problem");
         }
 
     }
@@ -41,9 +41,9 @@ public class FileIO {
         } catch (ClassNotFoundException e) {
             System.out.println("Класс не найден");
         }
-        ArrayList<ArrayList<Plane>> dessertList = new ArrayList<>();
-        dessertList.add(planes);
-        dessertList.add(airline);
-        return dessertList;
+        ArrayList<ArrayList<Plane>> planelist = new ArrayList<>();
+        planelist.add(planes);
+        planelist.add(airline);
+        return planelist;
     }
 }

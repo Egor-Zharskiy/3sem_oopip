@@ -1,12 +1,15 @@
+
+
+
 import planes.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-
 
         Scanner scan = new Scanner(System.in);
 
@@ -17,14 +20,6 @@ public class Main {
         planes.add(new Boeing("f", 100, 100));
         planes.add(new Convair("convair", 12, 2000));
         planes.add(new Airbus("airbus", 125, 4200));
-
-
-        MyThread first_thread = new MyThread(planes);
-        first_thread.start();
-
-
-        Thread second_thread = new Thread(new Runner(planes));
-        second_thread.start();
 
 
         Function func = (airline_planes) -> {
@@ -86,7 +81,35 @@ public class Main {
                 case 10:
                     Menu.PrintList(airline);
                     break;
+
                 case 11:
+                    double averageCapacity = airline.stream()
+                            .mapToDouble(Plane::getLoad_capacity)
+                            .average()
+                            .orElse(0.0);
+                    System.out.println("Средняя грузоподъемность самолетов авиакомпании: " + averageCapacity);
+                    break;
+                case 12:
+                    MyThread first_thread = new MyThread(planes);
+                    first_thread.start();
+
+                    try {
+                        first_thread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    Thread second_thread = new Thread(new Runner(planes));
+                    second_thread.start();
+                    System.out.println();
+                    try {
+                        second_thread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+
+                case 13:
                     flag = false;
                     break;
                 default:
@@ -101,27 +124,16 @@ class MyThread extends Thread {
     private ArrayList<Plane> planes;
 
     public MyThread(ArrayList<Plane> planes) {
+
         this.planes = planes;
     }
 
     public void run() {
-        int n = this.planes.size();
-        boolean swapped;
-        do {
-            swapped = false;
-            for (int i = 1; i < n; i++) {
-                if (this.planes.get(i - 1).getLoad_capacity() > this.planes.get(i).getLoad_capacity()) {
-                    Plane temp = this.planes.get(i - 1);
-                    this.planes.set(i - 1, this.planes.get(i));
-                    this.planes.set(i, temp);
-                    swapped = true;
-                }
-            }
-        } while (swapped);
-
-        System.out.print("\nОтсортированный по возрастанию массив по load_capacity: " + planes);
-
-
+        ArrayList<Plane> sort = (ArrayList<Plane>) planes.stream()
+                .sorted(Comparator.comparing(Plane::getSeats))
+                .collect(Collectors.toList());
+        System.out.println("Сортировка по возрастанию");
+        sort.forEach(System.out::println);
     }
 }
 
@@ -134,24 +146,10 @@ class Runner implements Runnable {
 
     @Override
     public void run() {
-
-
-        int n = this.planes.size();
-        boolean swapped;
-        do {
-            swapped = false;
-            for (int i = 1; i < n; i++) {
-                if (this.planes.get(i - 1).getLoad_capacity() < this.planes.get(i).getLoad_capacity()) {
-                    Plane temp = this.planes.get(i - 1);
-                    this.planes.set(i - 1, this.planes.get(i));
-                    this.planes.set(i, temp);
-                    swapped = true;
-                }
-            }
-        } while (swapped);
-
-
-        System.out.print("\nОтсортированный по убыванию массив по load_capacity: " + planes);
-
+        ArrayList<Plane> sort = (ArrayList<Plane>) planes.stream()
+                .sorted(Comparator.comparing(Plane::getSeats).reversed())
+                .collect(Collectors.toList());
+        System.out.println("Сортировка по убыванию:");
+        sort.forEach(System.out::println);
     }
 }
