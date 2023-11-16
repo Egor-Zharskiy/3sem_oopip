@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab_4.TableController">
+   <children>
+      <TableView fx:id="table" layoutY="1.0" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="154.66665649414062" text="Имя преподавателя" />
+          <TableColumn fx:id="experience" prefWidth="62.66668701171875" text="Стаж, лет" />
+            <TableColumn fx:id="workTime" prefWidth="134.6666259765625" text="Время работы" />
+            <TableColumn fx:id="subjects" prefWidth="114.0" text="предметы" />
+            <TableColumn fx:id="classes" prefWidth="134.0" text="Классы" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

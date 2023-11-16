@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab_4.RegistrationController">
+    <children>
+        <Button fx:id="registration" layoutX="236.0" layoutY="310.0" mnemonicParsing="false" onAction="#registration" text="Зарегистрироваться" />
+        <TextField fx:id="login_field" layoutX="226.0" layoutY="124.0" promptText="логин" />
+        <PasswordField fx:id="password_field" layoutX="226.0" layoutY="175.0" promptText="пароль" />
+        <TextField fx:id="mums_surname_field" layoutX="226.0" layoutY="226.0" promptText="фамилия мамы" />
+      <PasswordField fx:id="repeat_password" layoutX="225.0" layoutY="273.0" promptText="подвердите пароль" />
+      <Button fx:id="back" layoutX="501.0" layoutY="14.0" mnemonicParsing="false" onAction="#prevWindow" text="Вернуться" />
+    </children>
+</AnchorPane>
